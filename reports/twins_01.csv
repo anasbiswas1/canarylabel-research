@@ -1,0 +1,19 @@
+group,documents,changed_by_rule_i
+attack payloads / direct,34,34
+attack payloads / ignore_previous,34,34
+attack payloads / important_instructions,34,34
+attack payloads / important_instructions_no_model_name,34,34
+attack payloads / important_instructions_no_names,34,34
+attack payloads / important_instructions_no_user_name,34,34
+attack payloads / important_instructions_wrong_model_name,34,34
+attack payloads / important_instructions_wrong_user_name,34,34
+attack payloads / injecagent,34,34
+attack payloads / system_message,34,34
+attack payloads / tool_knowledge,34,34
+benign / agentdojo_clean,142,15
+benign / agentdojo_default,29,6
+benign / liu_bipia_pairs,879,66
+benign / liu_tbeval,1164,1
+benign / picalib_agentdojo,123,19
+benign / second_source,900,28
+benign / structural_test,2111,196
