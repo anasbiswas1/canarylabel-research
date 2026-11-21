@@ -1,0 +1,138 @@
+{
+ "written_by": "notebooks/00_setup.ipynb",
+ "sources": {
+  "picalib": {
+   "repository": "anasbiswas1/picalib-research",
+   "drive_path": "/content/drive/MyDrive/PICALIB_Research/picalib-research",
+   "commit": "4b24985411ca33696e96595722babd6a71c845c7"
+  },
+  "wani": {
+   "repository": "anasbiswas1/wani-research",
+   "drive_path": "/content/drive/MyDrive/WANI_Research/wani-research",
+   "commit": "9da42141b1995d6765a8ae21df7468942a27cbe1"
+  }
+ },
+ "files": {
+  "structural_train": {
+   "repo": "picalib",
+   "path": "structural/train.jsonl",
+   "sha256": "74e5bdc06b689c7710c1846f69853ba7b7b43be27065aa8740c3c183869163cd",
+   "bytes": 13308545
+  },
+  "structural_val": {
+   "repo": "picalib",
+   "path": "structural/val.jsonl",
+   "sha256": "d9bf6bcf0dde82c1bf5c226b11b039e609edec0000f9d36447f1e3d79c86a9e5",
+   "bytes": 1708077
+  },
+  "structural_test": {
+   "repo": "picalib",
+   "path": "structural/test.jsonl",
+   "sha256": "c79c04ae43fdeab271e6a343bb6659051bd5679a458074e13bd575cf13e6f65d",
+   "bytes": 3523174
+  },
+  "second_source": {
+   "repo": "picalib",
+   "path": "opi/opi_eval.json",
+   "sha256": "1110b98ad7367418d3f7bc48e6daade4e47ed34a5465f052b984da6a980d2421",
+   "bytes": 790470
+  },
+  "agentdojo_own": {
+   "repo": "picalib",
+   "path": "agentdojo/set.json",
+   "sha256": "d87be4a2d6c6af6abf1fe56d5b0a2214793118970fb48efd587b7fbf549cf3ac",
+   "bytes": 1923239
+  },
+  "phase5_subset": {
+   "repo": "picalib",
+   "path": "phase5v2/subset.json",
+   "sha256": "ece7725e8e7cca6f80a67d8c511d443d4c56708ee1d6cc76eafbbdb1cf89ee31",
+   "bytes": 160334
+  },
+  "phase5_rewrites": {
+   "repo": "picalib",
+   "path": "phase5v2/rewrites.json",
+   "sha256": "2425a053c28636f0c4a3f793a7021431e065b982dae8b30f0142632b678925dc",
+   "bytes": 198871
+  },
+  "rewrites12_full": {
+   "repo": "picalib",
+   "path": "phase5v3/rewrites_full.json",
+   "sha256": "dba4cd07739e443e9b4836ab38d197f3708db6a423d470b8c4573fc3ca85358a",
+   "bytes": 453832
+  },
+  "rewrites12_extra": {
+   "repo": "picalib",
+   "path": "phase5v3/rewrites_extra.json",
+   "sha256": "0190b561543e5d22d0bea73c7428632c3e234ba895bec3ef1b5abe22c848dea9",
+   "bytes": 929551
+  },
+  "liu_adclean": {
+   "repo": "wani",
+   "path": "public/sets/adclean.jsonl",
+   "sha256": "f16bc3fa9ed748956e014a156ebd04040953856b96a1527f5f72e985ec66b7a6",
+   "bytes": 427962
+  },
+  "liu_admatched": {
+   "repo": "wani",
+   "path": "public/sets/admatched.jsonl",
+   "sha256": "a125538e3838d467cec7076177bbf738af211dc14c1794ec60e9b5e930040a81",
+   "bytes": 1489339
+  },
+  "liu_adshift": {
+   "repo": "wani",
+   "path": "public/sets/adshift.jsonl",
+   "sha256": "03b5aa0a6e0766592cdebc11cd5d0c040370bb65496a30d8bd48f0cc5f3131ac",
+   "bytes": 2633631
+  },
+  "liu_bipia_pairs": {
+   "repo": "wani",
+   "path": "public/sets/bipia_pairs.jsonl",
+   "sha256": "92a5956be69448f4aef293a6fabe5fc4b2490ddfb33c9d4184da7628aded0a91",
+   "bytes": 11635082
+  },
+  "liu_tbeval": {
+   "repo": "wani",
+   "path": "public/sets/tbeval.jsonl",
+   "sha256": "212ff82a452caa8adbd24a4891253c0956ae55756f3c8c8d5065b91a9eb622b4",
+   "bytes": 4526285
+  }
+ },
+ "models": {
+  "D1_full_seed0": {
+   "repo": "picalib",
+   "path": "structural/model_full/best",
+   "files": [
+    "config.json",
+    "model.safetensors",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "training_args.bin"
+   ],
+   "config_sha256": "16e3ada98b92058c99983963ffe318590100391d0ba89d5207eacefab16563ab"
+  }
+ },
+ "registries": {
+  "continued_models": {
+   "repo": "wani",
+   "path": "continued/models.json",
+   "sha256": "661d2ecc4bed7a44fcc049358211d3ff25ae45cdbcffdec8ace56fcfc77fdb76",
+   "entries": [
+    "wolf-notwin-s0",
+    "wolf-notwin-s1",
+    "wolf-notwin-s2",
+    "wolf-sizematched-s0",
+    "wolf-twin-s0",
+    "wolf-twin-s1",
+    "wolf-twin-s2"
+   ]
+  }
+ },
+ "hf_models": {
+  "qwen7b": "Qwen/Qwen2.5-7B-Instruct",
+  "llama8b": "meta-llama/Llama-3.1-8B-Instruct",
+  "secalign8b": "facebook/Meta-SecAlign-8B",
+  "twin7b": "anasbiswas/Qwen2.5-7B-Instruct-TwinDistillation"
+ },
+ "missing": []
+}
