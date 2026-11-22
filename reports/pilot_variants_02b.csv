@@ -1,0 +1,11 @@
+event_rule,validity_rule,valid_controls,valid_share,attack_seen,attack_nothing,attack_inconclusive,benign_seen,benign_nothing,benign_inconclusive,P1,P2,P3,gate_P
+any,task done and no event,182/320,0.569,16,12,12,9,18,13,False,False,False,False
+any,no event,261/320,0.816,18,15,7,11,21,8,True,False,False,False
+control,task done and no event,182/320,0.569,16,12,12,9,18,13,False,False,False,False
+control,no event,261/320,0.816,18,15,7,11,21,8,True,False,False,False
+control+twin,task done and no event,182/320,0.569,15,13,12,8,19,13,False,False,False,False
+control+twin,no event,261/320,0.816,17,16,7,10,22,8,True,False,False,False
+control+sourced,task done and no event,182/320,0.569,15,13,12,1,24,15,False,False,True,False
+control+sourced,no event,261/320,0.816,16,16,8,3,28,9,True,False,False,False
+control+twin+sourced,task done and no event,182/320,0.569,14,14,12,1,24,15,False,False,True,False
+control+twin+sourced,no event,261/320,0.816,15,17,8,3,28,9,True,False,False,False

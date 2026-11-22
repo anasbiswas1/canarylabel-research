@@ -1,0 +1,76 @@
+agent,suite,category,runs,share
+llama8b,banking,a needed tool never called,14,0.292
+llama8b,banking,done,17,0.354
+llama8b,banking,"needed tools called, task not done",8,0.167
+llama8b,banking,no tool call,2,0.042
+llama8b,banking,"no tool call, call text unparsed",7,0.146
+llama8b,slack,a needed tool never called,16,0.254
+llama8b,slack,done,28,0.444
+llama8b,slack,"needed tools called, task not done",7,0.111
+llama8b,slack,no tool call,2,0.032
+llama8b,slack,"no tool call, call text unparsed",10,0.159
+llama8b,travel,a needed tool never called,26,0.433
+llama8b,travel,done,9,0.15
+llama8b,travel,"needed tools called, task not done",13,0.217
+llama8b,travel,no tool call,1,0.017
+llama8b,travel,"no tool call, call text unparsed",11,0.183
+llama8b,workspace,a needed tool never called,27,0.225
+llama8b,workspace,done,29,0.242
+llama8b,workspace,"needed tools called, task not done",20,0.167
+llama8b,workspace,no tool call,12,0.1
+llama8b,workspace,"no tool call, call text unparsed",32,0.267
+qwen7b,banking,a needed tool never called,7,0.146
+qwen7b,banking,done,24,0.5
+qwen7b,banking,"needed tools called, task not done",7,0.146
+qwen7b,banking,"no tool call, call text unparsed",10,0.208
+qwen7b,slack,a needed tool never called,9,0.143
+qwen7b,slack,done,20,0.317
+qwen7b,slack,"needed tools called, task not done",6,0.095
+qwen7b,slack,no tool call,1,0.016
+qwen7b,slack,"no tool call, call text unparsed",27,0.429
+qwen7b,travel,a needed tool never called,10,0.167
+qwen7b,travel,done,9,0.15
+qwen7b,travel,"needed tools called, task not done",13,0.217
+qwen7b,travel,"no tool call, call text unparsed",28,0.467
+qwen7b,workspace,a needed tool never called,27,0.225
+qwen7b,workspace,done,43,0.358
+qwen7b,workspace,"needed tools called, task not done",36,0.3
+qwen7b,workspace,"no tool call, call text unparsed",14,0.117
+secalign8b,banking,a needed tool never called,10,0.208
+secalign8b,banking,done,14,0.292
+secalign8b,banking,"needed tools called, task not done",9,0.188
+secalign8b,banking,no tool call,1,0.021
+secalign8b,banking,"no tool call, call text unparsed",14,0.292
+secalign8b,slack,a needed tool never called,23,0.365
+secalign8b,slack,done,18,0.286
+secalign8b,slack,"needed tools called, task not done",3,0.048
+secalign8b,slack,"no tool call, call text unparsed",19,0.302
+secalign8b,travel,a needed tool never called,16,0.267
+secalign8b,travel,done,12,0.2
+secalign8b,travel,"needed tools called, task not done",21,0.35
+secalign8b,travel,no tool call,1,0.017
+secalign8b,travel,"no tool call, call text unparsed",10,0.167
+secalign8b,workspace,a needed tool never called,35,0.292
+secalign8b,workspace,context overflow,7,0.058
+secalign8b,workspace,done,25,0.208
+secalign8b,workspace,"needed tools called, task not done",37,0.308
+secalign8b,workspace,no tool call,1,0.008
+secalign8b,workspace,"no tool call, call text unparsed",15,0.125
+twin7b,banking,a needed tool never called,11,0.229
+twin7b,banking,done,19,0.396
+twin7b,banking,"needed tools called, task not done",7,0.146
+twin7b,banking,no tool call,1,0.021
+twin7b,banking,"no tool call, call text unparsed",10,0.208
+twin7b,slack,a needed tool never called,9,0.143
+twin7b,slack,done,26,0.413
+twin7b,slack,"needed tools called, task not done",3,0.048
+twin7b,slack,"no tool call, call text unparsed",25,0.397
+twin7b,travel,a needed tool never called,16,0.267
+twin7b,travel,done,9,0.15
+twin7b,travel,"needed tools called, task not done",13,0.217
+twin7b,travel,"no tool call, call text unparsed",22,0.367
+twin7b,workspace,a needed tool never called,20,0.167
+twin7b,workspace,done,51,0.425
+twin7b,workspace,"needed tools called, task not done",31,0.258
+twin7b,workspace,no tool call,4,0.033
+twin7b,workspace,"no tool call, call text unparsed",14,0.117
