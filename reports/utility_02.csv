@@ -1,0 +1,5 @@
+agent,role,runs,task_success,errors,reliable_tasks,reliable_bank_tasks
+llama8b,T1 / C1,291,0.285,0,9,6
+secalign8b,T3,291,0.237,0,2,1
+qwen7b,C2 / base of T2,291,0.33,0,16,11
+twin7b,T2,291,0.361,0,16,12

@@ -1,0 +1,3 @@
+a,b,units,both,only_a,only_b,neither,share_a,share_b,diff,ci_low,ci_high
+twin7b,qwen7b,287,40,10,35,202,0.174,0.261,-0.087,-0.132,-0.042
+secalign8b,llama8b,287,15,0,272,0,0.052,1.0,-0.948,-0.973,-0.922

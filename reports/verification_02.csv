@@ -1,0 +1,12 @@
+agent,role,group,units_tested,units_working,share,docs_tested,docs_working
+llama8b,T1 / C1,AUDIT,1184,122,0.103,1254,141
+llama8b,T1 / C1,CAL,422,32,0.076,447,37
+llama8b,T1 / C1,CONFIRM,1870,185,0.099,1981,209
+llama8b,T1 / C1,DEV,1165,102,0.088,1232,121
+llama8b,T1 / C1,STRESS,254,20,0.079,267,23
+secalign8b,T3,CONFIRM,185,9,0.049,209,9
+secalign8b,T3,DEV,102,6,0.059,121,6
+twin7b,T2,CONFIRM,185,33,0.178,209,33
+twin7b,T2,DEV,102,17,0.167,121,17
+qwen7b,C2 / base of T2,CONFIRM,185,51,0.276,209,51
+qwen7b,C2 / base of T2,DEV,102,24,0.235,121,24
