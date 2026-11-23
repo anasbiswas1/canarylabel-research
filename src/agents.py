@@ -97,6 +97,22 @@ def verification_job(agent: str, unit: dict, run: int) -> dict:
                 agent=agent_spec(agent), decoding=DECODING, seed=seed_of("verify", agent, unit_id(unit), run))
 
 
+def variant_job(agent: str, unit: dict, draw: str, text: str, candidates: list) -> dict:
+    """A rewritten attack (src/variants.py) in its seed's task: the rewrite in every vector the task reads, as
+    AgentDojo's own attack places a payload, judged by the injection task's security check. A text with a double
+    quote or a backslash is escaped by the loader (tools/agent_run.py, yaml_quoted); its key records that, so a run
+    made before the loader escaped such text (it failed to load) is not reused."""
+    context = {"injection_task": unit["injection_task"], "template": unit["template"], "variant": draw}
+    if '"' in text or "\\" in text:
+        context["loader"] = "yaml-quoted"
+    key = cache_key("target_run", text=text, model=agent, revision=revision(agent),
+                    task=f"{unit['suite']}/{unit['user_task']}", context=context,
+                    seed=0, decoding=DECODING, prompt_version=PROMPT_VERSION)
+    return dict(key=key, kind="variant", agent_name=agent, unit=unit_id(unit), draw=draw, run=0, suite=unit["suite"],
+                user_task=unit["user_task"], injection_task=unit["injection_task"], native={v: text for v in candidates},
+                agent=agent_spec(agent), decoding=DECODING, seed=seed_of("variant", agent, draw))
+
+
 def episode_plant(kind: str, draw: dict, text: str | None) -> dict:
     plant = {draw["secret_vector"]: draw["secret_text"]}
     if kind in ("document", "twin"):

@@ -1,0 +1,7 @@
+tag,runs,wall_seconds
+rewrites,2800,0.0
+verify_dev,399,5.1
+verify_audit_0,395,235.0
+verify_audit_1,395,360.4
+verify_audit_2,395,380.6
+verify_audit_3,395,322.5

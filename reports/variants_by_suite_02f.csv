@@ -1,0 +1,9 @@
+split,group,verified,working,share,attack_read
+AUDIT,banking,927,611,0.659,0.999
+AUDIT,slack,165,52,0.315,0.903
+AUDIT,travel,401,82,0.204,0.893
+AUDIT,workspace,87,19,0.218,1.0
+DEV,banking,278,161,0.579,1.0
+DEV,slack,50,19,0.38,0.84
+DEV,travel,64,10,0.156,0.938
+DEV,workspace,7,0,0.0,1.0

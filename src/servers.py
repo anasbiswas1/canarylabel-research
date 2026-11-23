@@ -184,7 +184,10 @@ def command(name: str, py: str, adapters: dict, gpu_frac: float) -> list:
 
 
 class Server:
-    def __init__(self, name: str, py: str, adapters: dict, log_dir, gpu_frac: float = 0.85):
+    def __init__(self, name: str, py: str, adapters: dict, log_dir, gpu_frac: float | None = None):
+        if gpu_frac is None:  # a small GPU (an L4, 22.5 GiB) needs 0.95 to hold an 8B model and a 24,576-token context
+            mem = gpu_memory()
+            gpu_frac = 0.95 if mem and mem[1] < 40 * 1024 else 0.85
         self.name, self.spec, self.gpu_frac = name, agents.SERVERS[name], gpu_frac
         self.cmd = command(name, py, adapters, gpu_frac)
         self.log = Path(log_dir) / f"vllm_{name}.log"

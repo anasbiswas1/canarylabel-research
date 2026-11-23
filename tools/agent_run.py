@@ -203,10 +203,17 @@ def trap_function(name: str):
     return make_function(fn)
 
 
+def yaml_quoted(text: str) -> str:
+    """AgentDojo writes each injection into a double-quoted string of the suite's environment file and then loads the
+    file. A double quote in the text would end that string and a backslash would start an escape, so both are escaped
+    here and the agent reads the text exactly. Text with neither (every AgentDojo attack) is unchanged."""
+    return text.replace("\\", "\\\\").replace('"', '\\"')
+
+
 def load_environment(suite, native: dict, plant: dict):
     """AgentDojo's own injection for native; exact text for plant (marker replaced after loading)."""
     markers = {v: f"@@CANARY_PLANT_{i:02d}@@" for i, v in enumerate(sorted(plant))}
-    env = suite.load_and_inject_default_environment({**native, **markers})
+    env = suite.load_and_inject_default_environment({**{v: yaml_quoted(t) for v, t in native.items()}, **markers})
     if not plant:
         return env
     found = set()
