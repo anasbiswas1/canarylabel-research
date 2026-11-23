@@ -1,0 +1,7 @@
+event_rule,chosen,valid_share,attack_seen,attack_inconclusive,benign_seen,benign_inconclusive
+any,False,0.865,31,1,6,5
+control,False,0.865,31,1,6,5
+control+sourced,False,0.865,25,1,1,5
+control+sourced-plus,False,0.865,25,1,1,5
+control+newtool,False,0.865,25,1,5,5
+control+newtool-or-sourced,True,0.865,31,1,5,5

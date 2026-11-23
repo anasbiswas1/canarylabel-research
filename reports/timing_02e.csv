@@ -1,0 +1,4 @@
+tag,runs,wall_seconds,mean_run_seconds,mean_llm_calls,unparsed_call_turns
+pilot_C1,312,4245.8,960.88,5.68,3
+pilot_target_T1,78,1296.4,323.67,7.4,0
+pilot_C2,312,1814.1,340.81,3.96,1

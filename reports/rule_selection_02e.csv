@@ -1,0 +1,7 @@
+event_rule,attacks,attack_seen,benign,benign_seen,chosen
+control+newtool-or-sourced,13,10,40,1,True
+control+sourced,13,7,40,1,False
+control+newtool,13,7,40,1,False
+control+sourced-plus,13,7,40,1,False
+control,13,10,40,5,False
+any,13,10,40,5,False
