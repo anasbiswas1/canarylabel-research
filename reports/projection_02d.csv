@@ -1,0 +1,73 @@
+event_rule,group,documents,alpha,beta,episodes,usable_pairs,pairs_needed,p_seen
+control,security,13,32.09,40.778,2,3,1,0.819
+control,security,13,32.09,40.778,2,3,2,0.412
+control,security,13,32.09,40.778,4,6,1,0.964
+control,security,13,32.09,40.778,4,6,2,0.814
+control,security,13,32.09,40.778,6,9,1,0.992
+control,security,13,32.09,40.778,6,9,2,0.947
+control,security,13,32.09,40.778,8,13,1,0.999
+control,security,13,32.09,40.778,8,13,2,0.99
+control,event only,27,34.771,50.0,2,2,1,0.649
+control,event only,27,34.771,50.0,2,2,2,0.171
+control,event only,27,34.771,50.0,4,5,1,0.923
+control,event only,27,34.771,50.0,4,5,2,0.674
+control,event only,27,34.771,50.0,6,7,1,0.971
+control,event only,27,34.771,50.0,6,7,2,0.844
+control,event only,27,34.771,50.0,8,10,1,0.993
+control,event only,27,34.771,50.0,8,10,2,0.951
+control,benign,40,2.205,50.0,2,3,1,0.119
+control,benign,40,2.205,50.0,2,3,2,0.007
+control,benign,40,2.205,50.0,4,6,1,0.219
+control,benign,40,2.205,50.0,4,6,2,0.031
+control,benign,40,2.205,50.0,6,9,1,0.303
+control,benign,40,2.205,50.0,6,9,2,0.065
+control,benign,40,2.205,50.0,8,12,1,0.375
+control,benign,40,2.205,50.0,8,12,2,0.103
+control+sourced,security,13,1.671,3.371,2,3,1,0.631
+control+sourced,security,13,1.671,3.371,2,3,2,0.287
+control+sourced,security,13,1.671,3.371,4,6,1,0.801
+control+sourced,security,13,1.671,3.371,4,6,2,0.564
+control+sourced,security,13,1.671,3.371,6,9,1,0.873
+control+sourced,security,13,1.671,3.371,6,9,2,0.706
+control+sourced,security,13,1.671,3.371,8,13,1,0.92
+control+sourced,security,13,1.671,3.371,8,13,2,0.807
+control+sourced,event only,27,8.845,49.204,2,2,1,0.279
+control+sourced,event only,27,8.845,49.204,2,2,2,0.025
+control+sourced,event only,27,8.845,49.204,4,5,1,0.549
+control+sourced,event only,27,8.845,49.204,4,5,2,0.175
+control+sourced,event only,27,8.845,49.204,6,7,1,0.666
+control+sourced,event only,27,8.845,49.204,6,7,2,0.292
+control+sourced,event only,27,8.845,49.204,8,10,1,0.783
+control+sourced,event only,27,8.845,49.204,8,10,2,0.454
+control+sourced,benign,40,0.426,50.0,2,3,1,0.025
+control+sourced,benign,40,0.426,50.0,2,3,2,0.001
+control+sourced,benign,40,0.426,50.0,4,6,1,0.047
+control+sourced,benign,40,0.426,50.0,4,6,2,0.003
+control+sourced,benign,40,0.426,50.0,6,9,1,0.068
+control+sourced,benign,40,0.426,50.0,6,9,2,0.007
+control+sourced,benign,40,0.426,50.0,8,12,1,0.088
+control+sourced,benign,40,0.426,50.0,8,12,2,0.012
+control+sourced-plus,security,13,1.671,3.371,2,3,1,0.631
+control+sourced-plus,security,13,1.671,3.371,2,3,2,0.287
+control+sourced-plus,security,13,1.671,3.371,4,6,1,0.801
+control+sourced-plus,security,13,1.671,3.371,4,6,2,0.564
+control+sourced-plus,security,13,1.671,3.371,6,9,1,0.873
+control+sourced-plus,security,13,1.671,3.371,6,9,2,0.706
+control+sourced-plus,security,13,1.671,3.371,8,13,1,0.92
+control+sourced-plus,security,13,1.671,3.371,8,13,2,0.807
+control+sourced-plus,event only,27,8.845,49.204,2,2,1,0.279
+control+sourced-plus,event only,27,8.845,49.204,2,2,2,0.025
+control+sourced-plus,event only,27,8.845,49.204,4,5,1,0.549
+control+sourced-plus,event only,27,8.845,49.204,4,5,2,0.175
+control+sourced-plus,event only,27,8.845,49.204,6,7,1,0.666
+control+sourced-plus,event only,27,8.845,49.204,6,7,2,0.292
+control+sourced-plus,event only,27,8.845,49.204,8,10,1,0.783
+control+sourced-plus,event only,27,8.845,49.204,8,10,2,0.454
+control+sourced-plus,benign,40,0.426,50.0,2,3,1,0.025
+control+sourced-plus,benign,40,0.426,50.0,2,3,2,0.001
+control+sourced-plus,benign,40,0.426,50.0,4,6,1,0.047
+control+sourced-plus,benign,40,0.426,50.0,4,6,2,0.003
+control+sourced-plus,benign,40,0.426,50.0,6,9,1,0.068
+control+sourced-plus,benign,40,0.426,50.0,6,9,2,0.007
+control+sourced-plus,benign,40,0.426,50.0,8,12,1,0.088
+control+sourced-plus,benign,40,0.426,50.0,8,12,2,0.012

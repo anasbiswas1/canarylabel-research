@@ -1,0 +1,215 @@
+agent,split,suite,basis,units
+llama8b,AUDIT,all,event only,133
+llama8b,AUDIT,all,not working,982
+llama8b,AUDIT,all,security,69
+llama8b,AUDIT,banking,event only,35
+llama8b,AUDIT,banking,not working,26
+llama8b,AUDIT,banking,security,39
+llama8b,AUDIT,slack,event only,10
+llama8b,AUDIT,slack,not working,27
+llama8b,AUDIT,slack,security,8
+llama8b,AUDIT,travel,event only,17
+llama8b,AUDIT,travel,not working,237
+llama8b,AUDIT,travel,security,18
+llama8b,AUDIT,workspace,event only,71
+llama8b,AUDIT,workspace,not working,692
+llama8b,AUDIT,workspace,security,4
+llama8b,CAL,all,event only,41
+llama8b,CAL,all,not working,361
+llama8b,CAL,all,security,20
+llama8b,CAL,banking,event only,11
+llama8b,CAL,banking,not working,6
+llama8b,CAL,banking,security,7
+llama8b,CAL,slack,event only,3
+llama8b,CAL,slack,not working,6
+llama8b,CAL,slack,security,1
+llama8b,CAL,travel,event only,4
+llama8b,CAL,travel,not working,72
+llama8b,CAL,travel,security,9
+llama8b,CAL,workspace,event only,23
+llama8b,CAL,workspace,not working,277
+llama8b,CAL,workspace,security,3
+llama8b,CONFIRM,all,event only,199
+llama8b,CONFIRM,all,not working,1532
+llama8b,CONFIRM,all,security,139
+llama8b,CONFIRM,banking,event only,34
+llama8b,CONFIRM,banking,not working,41
+llama8b,CONFIRM,banking,security,69
+llama8b,CONFIRM,slack,event only,36
+llama8b,CONFIRM,slack,not working,86
+llama8b,CONFIRM,slack,security,23
+llama8b,CONFIRM,travel,event only,37
+llama8b,CONFIRM,travel,not working,399
+llama8b,CONFIRM,travel,security,40
+llama8b,CONFIRM,workspace,event only,92
+llama8b,CONFIRM,workspace,not working,1006
+llama8b,CONFIRM,workspace,security,7
+llama8b,DEV,all,event only,122
+llama8b,DEV,all,not working,984
+llama8b,DEV,all,security,59
+llama8b,DEV,banking,event only,32
+llama8b,DEV,banking,not working,30
+llama8b,DEV,banking,security,42
+llama8b,DEV,slack,event only,14
+llama8b,DEV,slack,not working,40
+llama8b,DEV,slack,security,6
+llama8b,DEV,travel,event only,12
+llama8b,DEV,travel,not working,233
+llama8b,DEV,travel,security,10
+llama8b,DEV,workspace,event only,64
+llama8b,DEV,workspace,not working,681
+llama8b,DEV,workspace,security,1
+llama8b,STRESS,all,event only,33
+llama8b,STRESS,all,not working,206
+llama8b,STRESS,all,security,15
+llama8b,STRESS,banking,event only,9
+llama8b,STRESS,banking,not working,6
+llama8b,STRESS,banking,security,9
+llama8b,STRESS,slack,event only,4
+llama8b,STRESS,slack,not working,9
+llama8b,STRESS,slack,security,2
+llama8b,STRESS,travel,event only,2
+llama8b,STRESS,travel,not working,28
+llama8b,STRESS,travel,security,4
+llama8b,STRESS,workspace,event only,18
+llama8b,STRESS,workspace,not working,163
+llama8b,all,all,event only,528
+llama8b,all,all,not working,4065
+llama8b,all,all,security,302
+llama8b,all,banking,event only,121
+llama8b,all,banking,not working,109
+llama8b,all,banking,security,166
+llama8b,all,slack,event only,67
+llama8b,all,slack,not working,168
+llama8b,all,slack,security,40
+llama8b,all,travel,event only,72
+llama8b,all,travel,not working,969
+llama8b,all,travel,security,81
+llama8b,all,workspace,event only,268
+llama8b,all,workspace,not working,2819
+llama8b,all,workspace,security,15
+secalign8b,CONFIRM,all,event only,57
+secalign8b,CONFIRM,all,not working,267
+secalign8b,CONFIRM,all,security,14
+secalign8b,CONFIRM,banking,event only,22
+secalign8b,CONFIRM,banking,not working,68
+secalign8b,CONFIRM,banking,security,13
+secalign8b,CONFIRM,slack,event only,19
+secalign8b,CONFIRM,slack,not working,39
+secalign8b,CONFIRM,slack,security,1
+secalign8b,CONFIRM,travel,event only,13
+secalign8b,CONFIRM,travel,not working,64
+secalign8b,CONFIRM,workspace,event only,3
+secalign8b,CONFIRM,workspace,not working,96
+secalign8b,DEV,all,event only,36
+secalign8b,DEV,all,not working,138
+secalign8b,DEV,all,security,7
+secalign8b,DEV,banking,event only,21
+secalign8b,DEV,banking,not working,46
+secalign8b,DEV,banking,security,7
+secalign8b,DEV,slack,event only,7
+secalign8b,DEV,slack,not working,13
+secalign8b,DEV,travel,event only,7
+secalign8b,DEV,travel,not working,15
+secalign8b,DEV,workspace,event only,1
+secalign8b,DEV,workspace,not working,64
+secalign8b,all,all,event only,93
+secalign8b,all,all,not working,405
+secalign8b,all,all,security,21
+secalign8b,all,banking,event only,43
+secalign8b,all,banking,not working,114
+secalign8b,all,banking,security,20
+secalign8b,all,slack,event only,26
+secalign8b,all,slack,not working,52
+secalign8b,all,slack,security,1
+secalign8b,all,travel,event only,20
+secalign8b,all,travel,not working,79
+secalign8b,all,workspace,event only,4
+secalign8b,all,workspace,not working,160
+twin7b,CONFIRM,all,event only,73
+twin7b,CONFIRM,all,not working,164
+twin7b,CONFIRM,all,security,101
+twin7b,CONFIRM,banking,event only,16
+twin7b,CONFIRM,banking,not working,11
+twin7b,CONFIRM,banking,security,76
+twin7b,CONFIRM,slack,event only,15
+twin7b,CONFIRM,slack,not working,27
+twin7b,CONFIRM,slack,security,17
+twin7b,CONFIRM,travel,event only,10
+twin7b,CONFIRM,travel,not working,60
+twin7b,CONFIRM,travel,security,7
+twin7b,CONFIRM,workspace,event only,32
+twin7b,CONFIRM,workspace,not working,66
+twin7b,CONFIRM,workspace,security,1
+twin7b,DEV,all,event only,43
+twin7b,DEV,all,not working,101
+twin7b,DEV,all,security,37
+twin7b,DEV,banking,event only,13
+twin7b,DEV,banking,not working,28
+twin7b,DEV,banking,security,33
+twin7b,DEV,slack,event only,4
+twin7b,DEV,slack,not working,12
+twin7b,DEV,slack,security,4
+twin7b,DEV,travel,event only,4
+twin7b,DEV,travel,not working,18
+twin7b,DEV,workspace,event only,22
+twin7b,DEV,workspace,not working,43
+twin7b,all,all,event only,116
+twin7b,all,all,not working,265
+twin7b,all,all,security,138
+twin7b,all,banking,event only,29
+twin7b,all,banking,not working,39
+twin7b,all,banking,security,109
+twin7b,all,slack,event only,19
+twin7b,all,slack,not working,39
+twin7b,all,slack,security,21
+twin7b,all,travel,event only,14
+twin7b,all,travel,not working,78
+twin7b,all,travel,security,7
+twin7b,all,workspace,event only,54
+twin7b,all,workspace,not working,109
+twin7b,all,workspace,security,1
+qwen7b,CONFIRM,all,event only,63
+qwen7b,CONFIRM,all,not working,134
+qwen7b,CONFIRM,all,security,141
+qwen7b,CONFIRM,banking,event only,21
+qwen7b,CONFIRM,banking,not working,6
+qwen7b,CONFIRM,banking,security,76
+qwen7b,CONFIRM,slack,event only,3
+qwen7b,CONFIRM,slack,not working,36
+qwen7b,CONFIRM,slack,security,20
+qwen7b,CONFIRM,travel,event only,17
+qwen7b,CONFIRM,travel,not working,21
+qwen7b,CONFIRM,travel,security,39
+qwen7b,CONFIRM,workspace,event only,22
+qwen7b,CONFIRM,workspace,not working,71
+qwen7b,CONFIRM,workspace,security,6
+qwen7b,DEV,all,event only,33
+qwen7b,DEV,all,not working,81
+qwen7b,DEV,all,security,67
+qwen7b,DEV,banking,event only,14
+qwen7b,DEV,banking,not working,7
+qwen7b,DEV,banking,security,53
+qwen7b,DEV,slack,not working,15
+qwen7b,DEV,slack,security,5
+qwen7b,DEV,travel,event only,5
+qwen7b,DEV,travel,not working,10
+qwen7b,DEV,travel,security,7
+qwen7b,DEV,workspace,event only,14
+qwen7b,DEV,workspace,not working,49
+qwen7b,DEV,workspace,security,2
+qwen7b,all,all,event only,96
+qwen7b,all,all,not working,215
+qwen7b,all,all,security,208
+qwen7b,all,banking,event only,35
+qwen7b,all,banking,not working,13
+qwen7b,all,banking,security,129
+qwen7b,all,slack,event only,3
+qwen7b,all,slack,not working,51
+qwen7b,all,slack,security,25
+qwen7b,all,travel,event only,22
+qwen7b,all,travel,not working,31
+qwen7b,all,travel,security,46
+qwen7b,all,workspace,event only,36
+qwen7b,all,workspace,not working,120
+qwen7b,all,workspace,security,8

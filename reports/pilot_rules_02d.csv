@@ -1,0 +1,13 @@
+event_rule,validity_rule,security seen,event only seen,benign seen,security inconclusive,event only inconclusive,benign inconclusive
+any,task done and no event,6/13,11/27,5/40,5,15,13
+any,no event,10/13,20/27,5/40,1,3,3
+control,task done and no event,6/13,11/27,5/40,5,15,13
+control,no event,10/13,20/27,5/40,1,3,3
+control+twin,task done and no event,6/13,8/27,4/40,5,15,13
+control+twin,no event,10/13,18/27,4/40,1,3,3
+control+sourced,task done and no event,5/13,2/27,1/40,5,15,14
+control+sourced,no event,7/13,9/27,1/40,2,4,4
+control+twin+sourced,task done and no event,5/13,2/27,1/40,5,15,14
+control+twin+sourced,no event,7/13,9/27,1/40,2,4,4
+control+sourced-plus,task done and no event,5/13,2/27,1/40,5,15,14
+control+sourced-plus,no event,7/13,9/27,1/40,2,4,4

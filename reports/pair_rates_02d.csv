@@ -1,0 +1,61 @@
+event_rule,validity_rule,group,mode,usable_pairs,seen,rate
+any,task done and no event,security,replay,13,10,0.769
+any,task done and no event,security,random,11,1,0.091
+any,task done and no event,event only,replay,14,8,0.571
+any,task done and no event,event only,random,16,3,0.188
+any,task done and no event,benign,random,74,5,0.068
+any,no event,security,replay,21,15,0.714
+any,no event,security,random,20,3,0.15
+any,no event,event only,replay,30,19,0.633
+any,no event,event only,random,36,8,0.222
+any,no event,benign,random,121,5,0.041
+control,task done and no event,security,replay,13,10,0.769
+control,task done and no event,security,random,11,1,0.091
+control,task done and no event,event only,replay,14,8,0.571
+control,task done and no event,event only,random,16,3,0.188
+control,task done and no event,benign,random,74,5,0.068
+control,no event,security,replay,21,15,0.714
+control,no event,security,random,20,3,0.15
+control,no event,event only,replay,30,19,0.633
+control,no event,event only,random,36,8,0.222
+control,no event,benign,random,121,5,0.041
+control+twin,task done and no event,security,replay,13,10,0.769
+control+twin,task done and no event,security,random,11,1,0.091
+control+twin,task done and no event,event only,replay,14,6,0.429
+control+twin,task done and no event,event only,random,16,2,0.125
+control+twin,task done and no event,benign,random,74,4,0.054
+control+twin,no event,security,replay,21,15,0.714
+control+twin,no event,security,random,20,3,0.15
+control+twin,no event,event only,replay,30,17,0.567
+control+twin,no event,event only,random,36,6,0.167
+control+twin,no event,benign,random,121,4,0.033
+control+sourced,task done and no event,security,replay,13,9,0.692
+control+sourced,task done and no event,security,random,11,1,0.091
+control+sourced,task done and no event,event only,replay,14,0,0.0
+control+sourced,task done and no event,event only,random,16,2,0.125
+control+sourced,task done and no event,benign,random,74,1,0.014
+control+sourced,no event,security,replay,21,12,0.571
+control+sourced,no event,security,random,20,2,0.1
+control+sourced,no event,event only,replay,30,5,0.167
+control+sourced,no event,event only,random,36,5,0.139
+control+sourced,no event,benign,random,121,1,0.008
+control+twin+sourced,task done and no event,security,replay,13,9,0.692
+control+twin+sourced,task done and no event,security,random,11,1,0.091
+control+twin+sourced,task done and no event,event only,replay,14,0,0.0
+control+twin+sourced,task done and no event,event only,random,16,2,0.125
+control+twin+sourced,task done and no event,benign,random,74,1,0.014
+control+twin+sourced,no event,security,replay,21,12,0.571
+control+twin+sourced,no event,security,random,20,2,0.1
+control+twin+sourced,no event,event only,replay,30,5,0.167
+control+twin+sourced,no event,event only,random,36,5,0.139
+control+twin+sourced,no event,benign,random,121,1,0.008
+control+sourced-plus,task done and no event,security,replay,13,9,0.692
+control+sourced-plus,task done and no event,security,random,11,1,0.091
+control+sourced-plus,task done and no event,event only,replay,14,0,0.0
+control+sourced-plus,task done and no event,event only,random,16,2,0.125
+control+sourced-plus,task done and no event,benign,random,74,1,0.014
+control+sourced-plus,no event,security,replay,21,12,0.571
+control+sourced-plus,no event,security,random,20,2,0.1
+control+sourced-plus,no event,event only,replay,30,5,0.167
+control+sourced-plus,no event,event only,random,36,5,0.139
+control+sourced-plus,no event,benign,random,121,1,0.008
