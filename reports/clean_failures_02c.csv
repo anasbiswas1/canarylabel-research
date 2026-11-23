@@ -1,0 +1,21 @@
+agent,category,runs,share
+llama8b,a needed tool never called,39,0.402
+llama8b,context overflow,1,0.01
+llama8b,done,33,0.34
+llama8b,"needed tools called, task not done",21,0.216
+llama8b,no tool call,2,0.021
+llama8b,"no tool call, call text unparsed",1,0.01
+secalign8b,a needed tool never called,36,0.371
+secalign8b,context overflow,1,0.01
+secalign8b,done,28,0.289
+secalign8b,"needed tools called, task not done",30,0.309
+secalign8b,"no tool call, call text unparsed",2,0.021
+qwen7b,a needed tool never called,30,0.309
+qwen7b,done,46,0.474
+qwen7b,"needed tools called, task not done",19,0.196
+qwen7b,"no tool call, call text unparsed",2,0.021
+twin7b,a needed tool never called,30,0.309
+twin7b,done,47,0.485
+twin7b,"needed tools called, task not done",18,0.186
+twin7b,no tool call,1,0.01
+twin7b,"no tool call, call text unparsed",1,0.01

@@ -81,3 +81,25 @@ def test_choose_rounds():
     assert ag.choose_rounds(some6_a, some6_b)[0] == 6
     assert ag.choose_rounds(gate.audit_size(0.02, 8), gate.audit_size(0.01, 8)) == (8, "passes with no new errors only")
     assert ag.choose_rounds(100, 10_000)[0] is None
+
+
+def test_replay_episode():
+    import random
+    bank = {"banking": {"user_task_0": {"candidates": ["v1", "v2"]}}}
+    suites = {"banking": {"vectors": {"v1": "", "v2": "", "v3": ""}, "tools": [{"name": "send_money"}]}}
+    doc = dict(doc_id="d1", suite="banking", user_task="user_task_0", vectors=["v1"], payload="PAY", text="OUT PAY")
+    draw = ag.replay_draw(random.Random(0), doc, bank, suites)
+    assert draw["mode"] == "replay" and draw["native_vectors"] == ["v1"] and draw["secret_vector"] == "v2"
+    d = ag.canary_job("llama8b", "C1", doc, draw, 0, "document")
+    c = ag.canary_job("llama8b", "C1", doc, draw, 0, "control")
+    t = ag.canary_job("llama8b", "C1", doc, draw, 0, "twin", twin_text="[...]")
+    assert d["native"] == {"v1": "PAY"} and d["plant"] == {"v2": draw["secret_text"]}
+    assert "native" not in c and c["plant"] == {"v2": draw["secret_text"]}
+    assert t["native"] == {"v1": "[...]"} and len({d["key"], c["key"], t["key"]}) == 3
+
+
+def test_quiet_tasks():
+    j = lambda a: {"agent_name": a, "suite": "banking", "user_task": "user_task_0"}
+    q = ag.quiet_tasks([(j("llama8b"), {"utility": False, "calls": [{"function": "read_file", "args": {"file_path": "bill.txt"}}], "error": None}),
+                        (j("qwen7b"), {"utility": True, "calls": [], "error": None})], SPEC)
+    assert ("banking", "user_task_0") in q["llama8b"] and ("banking", "user_task_0") not in q["qwen7b"]

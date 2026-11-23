@@ -18,8 +18,10 @@ JOBS.jsonl holds one job per line:
 OUT.jsonl receives {"k": key, "v": result} lines. Keys already in OUT are skipped, so a stopped run resumes.
 
 The model element is AgentDojo's LocalLLM as of 0.1.35, the release that added Meta-SecAlign's protocol: the same
-tool-calling system prompt and <function=...> parsing, message content flattened to text, and tool results sent in
-a configurable role ("tool", or "input" for Meta-SecAlign) as {"result": text}. The prompt is rendered with the
+tool-calling system prompt, message content flattened to text, and tool results sent in a configurable role
+("tool", or "input" for Meta-SecAlign) as {"result": text}. Tool calls are read by src/toolcall.py, which reads
+AgentDojo's <function=...> tag leniently (notebook 02b found a fifth to a quarter of runs ending on a call that
+AgentDojo's strict parser dropped). The prompt is rendered with the
 model's own chat template and sent as token ids to vLLM's completions endpoint, so the template and its special
 tokens are exactly the model's for the base model and for a LoRA adapter alike.
 """
@@ -50,12 +52,15 @@ import openai  # noqa: E402
 from agentdojo.agent_pipeline import AgentPipeline, InitQuery, SystemMessage, ToolsExecutionLoop, ToolsExecutor  # noqa: E402
 from agentdojo.agent_pipeline.base_pipeline_element import BasePipelineElement  # noqa: E402
 from agentdojo.agent_pipeline.errors import AbortAgentError  # noqa: E402
-from agentdojo.agent_pipeline.llms.local_llm import _make_system_prompt, _parse_model_output  # noqa: E402
+from agentdojo.agent_pipeline.llms.local_llm import _make_system_prompt  # noqa: E402
 from agentdojo.attacks.attack_registry import load_attack  # noqa: E402
-from agentdojo.functions_runtime import EmptyEnv, FunctionsRuntime, make_function  # noqa: E402
+from agentdojo.functions_runtime import EmptyEnv, FunctionCall, FunctionsRuntime, make_function  # noqa: E402
 from agentdojo.task_suite import get_suite  # noqa: E402
 from agentdojo.task_suite.task_suite import functions_stack_trace_from_messages  # noqa: E402
-from agentdojo.types import get_text_content_as_str  # noqa: E402
+from agentdojo.types import ChatAssistantMessage, get_text_content_as_str, text_content_block_from_string  # noqa: E402
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+import toolcall  # noqa: E402
 
 VERSION = "v1.2"
 MAX_ITERS = 15
@@ -170,8 +175,22 @@ class ServedLLM(BasePipelineElement):
         self.stats["completion_tokens"] += getattr(response.usage, "completion_tokens", 0) or 0
         if choice.finish_reason == "length":
             self.stats["truncated_turns"] += 1
-        output = _parse_model_output(choice.text or "")
+        output = self.parse(choice.text or "", runtime)
         return query, runtime, env, [*messages, output], extra_args
+
+    def parse(self, completion: str, runtime) -> ChatAssistantMessage:
+        content = [text_content_block_from_string(completion.strip())]
+        call = toolcall.parse(completion, runtime.functions.keys())
+        if call is None:
+            if toolcall.has_call_text(completion):
+                self.stats["unparsed_call_turns"] += 1
+            return ChatAssistantMessage(role="assistant", content=content, tool_calls=[])
+        try:
+            fc = FunctionCall(function=call[0], args=json.loads(json.dumps(call[1], default=str)))
+        except Exception:  # arguments the runtime cannot hold
+            self.stats["unparsed_call_turns"] += 1
+            return ChatAssistantMessage(role="assistant", content=content, tool_calls=[])
+        return ChatAssistantMessage(role="assistant", content=content, tool_calls=[fc])
 
 
 def trap_function(name: str):
@@ -220,6 +239,7 @@ def build_pipeline(llm, defense):
 def run_job(job: dict) -> dict:
     t0 = time.time()
     stats = dict(llm_calls=0, prompt_tokens=0, completion_tokens=0, max_prompt_tokens=0, truncated_turns=0,
+                 unparsed_call_turns=0,
                  first_prompt=None, last_prompt=None)
     result = dict(calls=[], outputs=[], final="", utility=None, security=None, error=None)
     try:

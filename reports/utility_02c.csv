@@ -1,0 +1,5 @@
+agent,role,runs,task_success,errors,quiet_tasks,unparsed_call_turns
+llama8b,T1 / C1,97,0.34,0,68,4
+secalign8b,T3,97,0.289,0,64,4
+qwen7b,C2 / base of T2,97,0.474,0,75,4
+twin7b,T2,97,0.485,0,73,4

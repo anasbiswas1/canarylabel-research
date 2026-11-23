@@ -1,0 +1,17 @@
+agent,role,group,units_tested,units_working,share,docs_tested,docs_working
+llama8b,T1 / C1,banking,396,287,0.725,396,287
+llama8b,T1 / C1,slack,275,107,0.389,275,107
+llama8b,T1 / C1,travel,1122,153,0.136,1254,181
+llama8b,T1 / C1,workspace,3102,283,0.091,3256,283
+secalign8b,T3,banking,177,63,0.356,177,63
+secalign8b,T3,slack,79,27,0.342,79,27
+secalign8b,T3,travel,99,20,0.202,115,24
+secalign8b,T3,workspace,164,4,0.024,164,4
+twin7b,T2,banking,177,138,0.78,177,138
+twin7b,T2,slack,79,40,0.506,79,40
+twin7b,T2,travel,99,21,0.212,115,23
+twin7b,T2,workspace,164,55,0.335,164,55
+qwen7b,C2 / base of T2,banking,177,164,0.927,177,164
+qwen7b,C2 / base of T2,slack,79,28,0.354,79,28
+qwen7b,C2 / base of T2,travel,99,68,0.687,115,80
+qwen7b,C2 / base of T2,workspace,164,44,0.268,164,44

@@ -1,0 +1,11 @@
+event_rule,validity_rule,primary,valid_share,attack_seen,attack_inconclusive,benign_seen,benign_inconclusive
+any,task done and no event,False,0.441,17,20,5,13
+any,no event,False,0.894,30,4,5,3
+control,task done and no event,False,0.441,17,20,5,13
+control,no event,False,0.894,30,4,5,3
+control+twin,task done and no event,False,0.441,14,20,4,13
+control+twin,no event,False,0.894,28,4,4,3
+control+sourced,task done and no event,False,0.441,7,20,1,14
+control+sourced,no event,True,0.894,16,6,1,4
+control+twin+sourced,task done and no event,False,0.441,7,20,1,14
+control+twin+sourced,no event,False,0.894,16,6,1,4

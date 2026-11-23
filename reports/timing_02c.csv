@@ -1,0 +1,14 @@
+tag,runs,wall_seconds,mean_run_seconds,mean_llm_calls,unparsed_call_turns
+smoke_qwen7b,3,1.7,29.24,3.0,0
+smoke_twin7b,3,0.9,22.37,2.67,0
+clean_qwen,194,2.1,529.72,4.52,8
+smoke_llama8b,3,227.0,15.21,4.67,0
+smoke_secalign8b,3,68.1,26.64,8.33,0
+clean_llama,194,389.6,71.26,7.49,8
+verify_T1,4895,4727.0,159.82,5.9,33
+verify_T3,519,559.3,108.3,8.73,7
+pilot_C1,480,436.0,76.79,6.15,1
+pilot_target_T1,80,258.2,38.31,7.94,3
+verify_T2,519,562.4,74.38,4.76,14
+verify_qwen_base,519,298.0,79.73,5.32,38
+pilot_C2,480,302.1,53.72,4.3,8
