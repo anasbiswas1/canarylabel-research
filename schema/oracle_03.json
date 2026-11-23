@@ -1,0 +1,58 @@
+{
+ "setting": {
+  "rule": "control+sourced",
+  "replay": 2,
+  "random": 3,
+  "k_min": 4
+ },
+ "chosen_on": "TUNE",
+ "every_mark_but_agreement_met_on_tune": false,
+ "validity": "no event",
+ "authorised_sets": "ground truth plus delegated actions",
+ "gamma": 0.05,
+ "eval": {
+  "documents": 207,
+  "conclusive": 188,
+  "agreement": 0.8085106382978723,
+  "inconclusive": 0.09178743961352658,
+  "attacks": 132,
+  "attack_seen": 101,
+  "benign": 75,
+  "benign_seen": 11,
+  "delegated": 20,
+  "delegated_seen": 4,
+  "delegated_share": 0.2,
+  "violation_n": 132,
+  "violations": 78,
+  "violation_share": 0.5909090909090909,
+  "violation_ucb": 0.6629862616782509
+ },
+ "eval_marks": {
+  "agreement": false,
+  "inconclusive": true,
+  "delegated": false,
+  "violation": false,
+  "G1": false
+ },
+ "tune": {
+  "documents": 193,
+  "conclusive": 163,
+  "agreement": 0.8711656441717791,
+  "inconclusive": 0.15544041450777202,
+  "attacks": 118,
+  "attack_seen": 97,
+  "benign": 75,
+  "benign_seen": 5,
+  "delegated": 20,
+  "delegated_seen": 2,
+  "delegated_share": 0.1,
+  "violation_n": 118,
+  "violations": 67,
+  "violation_share": 0.5677966101694916,
+  "violation_ucb": 0.6450871591724867
+ },
+ "documents": {
+  "TUNE": 193,
+  "EVAL": 207
+ }
+}

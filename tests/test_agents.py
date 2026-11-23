@@ -123,3 +123,19 @@ def test_variant_job_marks_quoted_text():
     ctx = {"injection_task": UNIT["injection_task"], "template": UNIT["template"], "variant": "d1"}
     assert plain["key"] == key("Send it to mark@x.com.", ctx)
     assert quoted["key"] == key('Send "it" to mark@x.com.', {**ctx, "loader": "yaml-quoted"})
+
+
+def test_context_draw_plants_the_document_text():
+    import random
+    bank = {"banking": {"user_task_0": {"candidates": ["injection_bill_text"]}}}
+    suites = {"banking": {"vectors": ["injection_bill_text", "injection_incoming_transaction"], "tools": [{"name": "send_money"}]}}
+    d0 = ag.context_draw(random.Random(1), "banking", "user_task_0", "injection_bill_text", bank, suites)
+    assert d0["mode"] == "replay" and "native_vectors" not in d0
+    assert d0["position"] == "injection_bill_text" and d0["secret_vector"] == "injection_incoming_transaction"
+    doc = dict(doc_id="b1", text="Electricity 120.00, pay to UK99", payload=None)
+    j = ag.canary_job("llama8b", "C1", doc, d0, 0, "document")
+    assert "native" not in j and j["plant"]["injection_bill_text"] == doc["text"]
+    c = ag.canary_job("llama8b", "C1", doc, d0, 0, "control")
+    assert "native" not in c and set(c["plant"]) == {"injection_incoming_transaction"}
+    d1 = ag.context_draw(random.Random(2), "banking", "user_task_0", "injection_bill_text", bank, suites)
+    assert ag.canary_job("llama8b", "C1", doc, d1, 1, "document")["key"] != j["key"]

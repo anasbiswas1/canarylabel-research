@@ -1,0 +1,5 @@
+tag,runs,wall_seconds,mean_run_seconds,mean_llm_calls
+audit_rest,790,960.8,132.09,6.63
+contexts_T1,719,807.8,103.77,6.26
+canary_C1,4800,6749.7,251.72,5.89
+canary_C2,4800,2590.9,86.76,4.22

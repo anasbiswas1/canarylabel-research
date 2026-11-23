@@ -134,12 +134,25 @@ def replay_draw(rng, doc: dict, bank: dict, suites: dict) -> dict:
                 trap_names=sandbox.trap_names(rng, existing={x["name"] for x in suites[s]["tools"]}))
 
 
+def context_draw(rng, suite: str, task: str, position: str, bank: dict, suites: dict) -> dict:
+    """Replay mode for a document planted in a real context (plan v3, Section 7.3): the task and the vector the
+    document arrived in are fixed; the secret, its vector and the trap tools are drawn. The document is planted as
+    written (no native_vectors), so canary_job places its text, not a payload."""
+    others = [v for v in bank[suite][task]["candidates"] if v != position] or \
+             [v for v in suites[suite]["vectors"] if v != position]
+    token = sandbox.secret_token(rng)
+    return dict(suite=suite, task=task, mode="replay", position=position, secret=token,
+                secret_vector=rng.choice(sorted(others)),
+                secret_text=rng.choice(sandbox.SECRET_TEMPLATES).format(token=token),
+                trap_names=sandbox.trap_names(rng, existing={x["name"] for x in suites[suite]["tools"]}))
+
+
 def canary_job(agent: str, role: str, doc: dict, draw: dict, episode: int, kind: str, twin_text: str | None = None):
     """kind: document (the document at the drawn position), control (that vector left at its benchmark default),
     twin (the document with its instructions masked, for attribution). All three carry the planted secret and
-    the trap tools of the draw. In replay mode the document is the attack's payload, placed in its own vectors by
-    AgentDojo's injection."""
-    replay = draw["mode"] == "replay"
+    the trap tools of the draw. In replay mode with native_vectors (replay_draw) the document is the attack's
+    payload, placed in its own vectors by AgentDojo's injection; a context_draw plants the document's text."""
+    replay = draw["mode"] == "replay" and bool(draw.get("native_vectors"))
     text = {"document": doc["payload"] if replay else doc["text"], "control": "", "twin": twin_text}[kind]
     key = cache_key("control_run" if kind == "control" else "canary_run", text=text, model=agent,
                     revision=revision(agent), role=role, task=f"{draw['suite']}/{draw['task']}", mode=draw["mode"],
