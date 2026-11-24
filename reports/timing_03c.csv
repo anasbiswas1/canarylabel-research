@@ -1,0 +1,6 @@
+tag,runs,wall_seconds,mean_run_seconds,mean_llm_calls
+rewrites,666,212.4,0,1
+verify_T1,649,838.7,123.92,6.28
+contexts_T1,1408,2810.2,313.46,6.64
+canary_C1,1996,3558.9,295.5,6.03
+canary_C2,1996,1394.5,99.2,4.35

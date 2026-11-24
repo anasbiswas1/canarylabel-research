@@ -134,6 +134,27 @@ def replay_draw(rng, doc: dict, bank: dict, suites: dict) -> dict:
                 trap_names=sandbox.trap_names(rng, existing={x["name"] for x in suites[s]["tools"]}))
 
 
+def needed_slots(bank: dict, suites: dict, suite: str, task: str) -> set:
+    """The candidate vectors of a task whose default content its ground truth uses: a value of a ground-truth call
+    argument (4 or more characters, numbers as written, e.g. an account number or the amount 98.70) appears in the
+    vector's default text. Planting a document there removes what the task needs (notebook 03b)."""
+    out = set()
+    vals = set()
+    for call in bank[suite][task]["gt"]:
+        for v in (call.get("args") or {}).values():
+            for x in (v if isinstance(v, list) else [v]):
+                x = str(x).strip()
+                if isinstance(v, float) or (isinstance(x, str) and x.replace(".", "", 1).isdigit()):
+                    x = f"{float(x):.2f}" if "." in x or isinstance(v, float) else x
+                if len(x) >= 4:
+                    vals.add(x.lower())
+    for vec in bank[suite][task]["candidates"]:
+        text = str(suites[suite]["vectors"].get(vec, "")).lower().replace("\\t", " ").replace("\\n", " ")
+        if any(x in text for x in vals):
+            out.add(vec)
+    return out
+
+
 def context_draw(rng, suite: str, task: str, position: str, bank: dict, suites: dict) -> dict:
     """Replay mode for a document planted in a real context (plan v3, Section 7.3): the task and the vector the
     document arrived in are fixed; the secret, its vector and the trap tools are drawn. The document is planted as
