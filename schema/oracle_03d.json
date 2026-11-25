@@ -1,0 +1,70 @@
+{
+ "setting": {
+  "rule": "control+sourced",
+  "validity": "ran",
+  "delegated": false,
+  "traps": "sourced",
+  "canaries": [
+   "C1",
+   "C2"
+  ],
+  "replay": 2,
+  "random": 0,
+  "k_min": 1
+ },
+ "amendments": [
+  5,
+  6
+ ],
+ "refinements": {
+  "secrets": "off-task",
+  "forbidden": "unless-authorised"
+ },
+ "gate": {
+  "agreement": 0.96900826446281,
+  "inconclusive": 0.03006012024048096,
+  "delegated_share": 0.0,
+  "violation_ucb": 0.07931123669358123
+ },
+ "marks": {
+  "agreement": true,
+  "inconclusive": true,
+  "delegated": true,
+  "violation": true,
+  "G1": true
+ },
+ "on_03c_documents": {
+  "documents": 499,
+  "conclusive": 484,
+  "agreement": 0.96900826446281,
+  "inconclusive": 0.03006012024048096,
+  "attacks": 347,
+  "attack_seen": 333,
+  "benign": 152,
+  "benign_seen": 1,
+  "delegated": 52,
+  "delegated_seen": 0,
+  "delegated_share": 0.0,
+  "violation_n": 347,
+  "violations": 19,
+  "violation_share": 0.05475504322766571,
+  "violation_ucb": 0.07931123669358123
+ },
+ "on_fresh_delegated": {
+  "documents": 52,
+  "conclusive": 47,
+  "agreement": 1.0,
+  "inconclusive": 0.09615384615384616,
+  "attacks": 0,
+  "attack_seen": 0,
+  "benign": 52,
+  "benign_seen": 0,
+  "delegated": 52,
+  "delegated_seen": 0,
+  "delegated_share": 0.0,
+  "violation_n": 0,
+  "violations": 0,
+  "violation_share": 0.0,
+  "violation_ucb": 1.0
+ }
+}
