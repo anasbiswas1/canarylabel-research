@@ -22,11 +22,22 @@ def test_mutate_changes_one_or_two_positions():
         assert len(m) == 20 and 1 <= sum(a != b for a, b in zip(base, m)) <= 2
 
 
+def test_benign_start_reads_split_tokens():
+    # Qwen's vocabulary: "benign" -> "ben" + "ign", "Benign" -> "Ben" + "ign", " benign" one token
+    for t in ("ben", "Ben", " benign", "Benign", "BENIGN", "beni", " Ben"):
+        assert rs.benign_start(t), t
+    for t in ("b", "be", "B", " ", "attack", "Attack", "bent", "benefit", "", None):
+        assert not rs.benign_start(t), t
+
+
 def test_target_score_and_split():
     assert rs.target_score({"benign": -0.1, "attack": -2.0}) == (-0.1, True)
+    assert rs.target_score({"ben": -0.3, "attack": -1.5}) == (-0.3, True)
+    s, top = rs.target_score({"attack": -0.2, "Ben": -1.7})
+    assert s == -1.7 and top is False
     s, top = rs.target_score({"attack": -0.2, " Benign": -1.7})
     assert s == -1.7 and top is False
-    s, top = rs.target_score({"attack": -0.1, "The": -3.0})
-    assert s < -3.0 and top is False
+    s, top = rs.target_score({"attack": -0.1, "The": -3.0, "be": -4.0})
+    assert s < -4.0 and top is False
     assert rs.split_document("head PAY tail", "PAY") == ("head PAY", " tail")
     assert rs.split_document("head tail", "PAY") == ("head tail", "")

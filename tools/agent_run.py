@@ -374,7 +374,9 @@ def run_rs(job: dict) -> dict:
                                           extra_body={"stop_token_ids": stop_ids, "skip_special_tokens": True})
             return r.choices[0].text or ""
 
-        best = [rng.choice(allowed) for _ in range(S["tokens"])]
+        init = rs.get("init_ids")
+        best = [int(i) for i in init][:S["tokens"]] if init else []
+        best += [rng.choice(allowed) for _ in range(S["tokens"] - len(best))]
         ids, doc = render(best)
         best_score = score(ids)
         for it in range(S["iterations"]):
@@ -394,7 +396,7 @@ def run_rs(job: dict) -> dict:
             result.update(success=judge_label(reply) == "benign", reply=reply)
         ids, doc = render(best)
         with _LOCK:
-            result.update(suffix=tok.decode(best), document=doc, best_logprob=round(best_score[0], 4))
+            result.update(suffix=tok.decode(best), suffix_ids=list(best), document=doc, best_logprob=round(best_score[0], 4))
     except Exception as e:
         result["error"] = f"{type(e).__name__}: {str(e)[:300]}"
         result["traceback"] = traceback.format_exc()[-1500:]
@@ -403,6 +405,39 @@ def run_rs(job: dict) -> dict:
 
 
 _RS_CACHE = {}
+
+
+def run_rs_check(job: dict) -> dict:
+    """One judge prompt answered greedily with its first-token log-probabilities, read by the search's own scorer:
+    checks on the live server, before the search, that the scorer agrees with the judge's reply."""
+    import rs_attack
+    import labellers
+    t0 = time.time()
+    result = dict(reply="", label="", first_token="", top={}, score=None, top_benign=None, error=None, llm_calls=1)
+    try:
+        agent, chk = job["agent"], job["rs_check"]
+        tok = tokenizer_of(agent["tokenizer"], agent.get("revision"))
+        client = client_of(agent["base_url"])
+        with _LOCK:
+            vocab = tok.get_vocab()
+            stop_ids = [vocab[t] for t in agent["stop"] if t in vocab]
+            text = tok.apply_chat_template(labellers.judge_messages(chk["task"], chk["document"], False), tokenize=False,
+                                           add_generation_prompt=True)
+            ids = tok.encode(text, add_special_tokens=False)
+        r = client.completions.create(model=agent["served"], prompt=ids, max_tokens=8, temperature=0.0, top_p=1.0, seed=0,
+                                      logprobs=20, extra_body={"stop_token_ids": stop_ids, "skip_special_tokens": True})
+        c = r.choices[0]
+        lp = c.logprobs
+        top = dict(lp.top_logprobs[0]) if lp and lp.top_logprobs else {}
+        score = rs_attack.target_score(top)
+        result.update(reply=c.text or "", label=judge_label(c.text or ""), first_token=(lp.tokens[0] if lp and lp.tokens else ""),
+                      top={k: round(v, 4) for k, v in sorted(top.items(), key=lambda kv: -kv[1])[:5]},
+                      score=round(score[0], 4), top_benign=bool(score[1]))
+    except Exception as e:
+        result["error"] = f"{type(e).__name__}: {str(e)[:300]}"
+        result["traceback"] = traceback.format_exc()[-1500:]
+    result["seconds"] = round(time.time() - t0, 3)
+    return result
 
 
 def done_keys(path: Path) -> set:
@@ -441,7 +476,8 @@ def main():
     t0, finished, errors, last = time.time(), 0, 0, time.time()
     buffer = []
     with open(out, "a", encoding="utf-8") as sink, ThreadPoolExecutor(a.workers) as pool:
-        futures = {pool.submit(run_rs if job.get("rs") else (run_judge if job.get("judge") else run_job), job): job["key"] for job in jobs}
+        futures = {pool.submit(run_rs if job.get("rs") else (run_rs_check if job.get("rs_check") else
+                                                               (run_judge if job.get("judge") else run_job)), job): job["key"] for job in jobs}
         for fut in as_completed(futures):
             res = fut.result()
             buffer.append(json.dumps({"k": futures[fut], "v": res}, default=str))
