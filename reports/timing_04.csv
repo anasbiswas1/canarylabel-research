@@ -1,0 +1,10 @@
+tag,runs,wall_seconds,mean_run_seconds,mean_llm_calls
+rewrites,1357,230.6,0,1
+verify_T1,1411,782.9,62.25,5.87
+detector_D1,2674,35.5,0,0
+judge_L2,575,53.2,4.48,1.0
+judge_L1,575,62.2,4.2,1.0
+l3_C1,1944,531.7,36.89,4.68
+l3_C2_and_l3s,2429,540.1,30.95,3.85
+retest_C2,36,64.9,15.15,4.53
+retest_C1,36,68.7,22.25,7.0

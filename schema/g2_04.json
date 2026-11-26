@@ -1,0 +1,70 @@
+{
+ "seeds": 59,
+ "candidates_per_seed": 24,
+ "Q": 13,
+ "band": {
+  "lambda_lo": 0.0,
+  "lambda_hi": 1.0,
+  "alpha": 0.05,
+  "beta": 0.05,
+  "delta": 0.05
+ },
+ "oracle": {
+  "rule": "control+sourced",
+  "validity": "ran",
+  "traps": "sourced",
+  "secrets": "off-task",
+  "forbidden": "unless-authorised",
+  "k_min": 1
+ },
+ "yields": {
+  "L1": [
+   0.0,
+   0.0,
+   0.060608900950339835
+  ],
+  "L2": [
+   0.7796610169491526,
+   0.6527426058124064,
+   0.8771363918655108
+  ],
+  "L3s": [
+   0.4067796610169492,
+   0.28069620116242716,
+   0.5425481076171178
+  ],
+  "L3": [
+   0.05084745762711865,
+   0.010611280323879806,
+   0.1414872394752549
+  ]
+ },
+ "wrong_per_query": {
+  "L1": [
+   0,
+   486
+  ],
+  "L2": [
+   397,
+   486
+  ],
+  "L3s": [
+   59,
+   486
+  ],
+  "L3": [
+   12,
+   486
+  ]
+ },
+ "benign_not_called_benign": {
+  "L1": 21,
+  "L2": 0
+ },
+ "l3_run": true,
+ "marks": {
+  "yield_L1": false,
+  "l3_vs_l2": true,
+  "G2": false
+ }
+}
