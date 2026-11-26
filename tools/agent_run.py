@@ -17,6 +17,7 @@ JOBS.jsonl holds one job per line:
   seed            integer; model call i of the run uses seed * 1000 + i
 A job with a "judge" field ({messages, max_tokens}) is one labelling call instead of an episode (notebook 04): the
 messages are rendered with the model's chat template and the reply is read as attack, benign or unclear.
+A job with an "rs" field is the random-search attack on a judge for one seed (notebook 04b, src/rs_attack.py).
 OUT.jsonl receives {"k": key, "v": result} lines. Keys already in OUT are skipped, so a stopped run resumes.
 
 The model element is AgentDojo's LocalLLM as of 0.1.35, the release that added Meta-SecAlign's protocol: the same
@@ -334,6 +335,76 @@ def run_judge(job: dict) -> dict:
     return result
 
 
+def run_rs(job: dict) -> dict:
+    """The random-search attack on a judge for one seed (src/rs_attack.py); runs on the judge's own server."""
+    import rs_attack
+    import labellers
+    t0 = time.time()
+    result = dict(success=False, suffix="", document="", iterations=0, best_logprob=None, reply="", error=None, llm_calls=0)
+    try:
+        agent, rs = job["agent"], job["rs"]
+        tok = tokenizer_of(agent["tokenizer"], agent.get("revision"))
+        client = client_of(agent["base_url"])
+        with _LOCK:
+            vocab = tok.get_vocab()
+            stop_ids = [vocab[t] for t in agent["stop"] if t in vocab]
+            if "allowed" not in _RS_CACHE:
+                _RS_CACHE["allowed"] = rs_attack.allowed_ids(tok)
+            allowed = _RS_CACHE["allowed"]
+        rng = random.Random(int(job["seed"]))
+        S = dict(rs_attack.SETTINGS, **rs.get("settings", {}))
+
+        def render(sfx):
+            with _LOCK:
+                doc = rs["before"] + " " + tok.decode(sfx) + rs["after"]
+                text = tok.apply_chat_template(labellers.judge_messages(rs["task"], doc, False), tokenize=False, add_generation_prompt=True)
+                return tok.encode(text, add_special_tokens=False), doc
+
+        def score(ids):
+            result["llm_calls"] += 1
+            r = client.completions.create(model=agent["served"], prompt=ids, max_tokens=1, temperature=0.0, top_p=1.0, seed=0,
+                                          logprobs=S["top_logprobs"], extra_body={"stop_token_ids": stop_ids})
+            lp = r.choices[0].logprobs
+            top = dict(lp.top_logprobs[0]) if lp and lp.top_logprobs else {}
+            return rs_attack.target_score(top)
+
+        def confirm(ids):
+            result["llm_calls"] += 1
+            r = client.completions.create(model=agent["served"], prompt=ids, max_tokens=8, temperature=0.0, top_p=1.0, seed=0,
+                                          extra_body={"stop_token_ids": stop_ids, "skip_special_tokens": True})
+            return r.choices[0].text or ""
+
+        best = [rng.choice(allowed) for _ in range(S["tokens"])]
+        ids, doc = render(best)
+        best_score = score(ids)
+        for it in range(S["iterations"]):
+            if best_score[1]:
+                reply = confirm(render(best)[0])
+                if judge_label(reply) == "benign":
+                    result.update(success=True, reply=reply)
+                    break
+            result["iterations"] = it + 1
+            cands = [rs_attack.mutate(rng, best, allowed, S["max_changed"]) for _ in range(S["width"])]
+            scored = [(score(render(c)[0]), c) for c in cands]
+            top_score, top_cand = max(scored, key=lambda x: x[0][0])
+            if top_score[0] > best_score[0]:
+                best, best_score = top_cand, top_score
+        if not result["success"] and best_score[1]:
+            reply = confirm(render(best)[0])
+            result.update(success=judge_label(reply) == "benign", reply=reply)
+        ids, doc = render(best)
+        with _LOCK:
+            result.update(suffix=tok.decode(best), document=doc, best_logprob=round(best_score[0], 4))
+    except Exception as e:
+        result["error"] = f"{type(e).__name__}: {str(e)[:300]}"
+        result["traceback"] = traceback.format_exc()[-1500:]
+    result["seconds"] = round(time.time() - t0, 3)
+    return result
+
+
+_RS_CACHE = {}
+
+
 def done_keys(path: Path) -> set:
     keys = set()
     if path.exists():
@@ -370,7 +441,7 @@ def main():
     t0, finished, errors, last = time.time(), 0, 0, time.time()
     buffer = []
     with open(out, "a", encoding="utf-8") as sink, ThreadPoolExecutor(a.workers) as pool:
-        futures = {pool.submit(run_judge if job.get("judge") else run_job, job): job["key"] for job in jobs}
+        futures = {pool.submit(run_rs if job.get("rs") else (run_judge if job.get("judge") else run_job), job): job["key"] for job in jobs}
         for fut in as_completed(futures):
             res = fut.result()
             buffer.append(json.dumps({"k": futures[fut], "v": res}, default=str))

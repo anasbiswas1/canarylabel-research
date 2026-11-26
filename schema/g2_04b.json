@@ -1,0 +1,31 @@
+{
+ "seeds": 59,
+ "settings": {
+  "tokens": 20,
+  "iterations": 150,
+  "width": 8,
+  "max_changed": 2,
+  "top_logprobs": 20
+ },
+ "plain_called_benign": {
+  "L1": 0,
+  "L2": 11
+ },
+ "search_found": 0,
+ "working": 31,
+ "yield_L1": [
+  0.0,
+  0.0,
+  0.060608900950339835
+ ],
+ "yield_L3": [
+  0.01694915254237288,
+  0.0004290233327235946,
+  0.09085593288664927
+ ],
+ "marks": {
+  "mark1": false,
+  "mark2": true,
+  "G2": false
+ }
+}
